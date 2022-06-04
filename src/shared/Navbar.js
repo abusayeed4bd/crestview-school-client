@@ -19,10 +19,12 @@ const Navbar = () => {
                         <li><Link className='text-decoration-none fw-bold  fs-5 mx-4 ' to="">Classes</Link></li>
 
                     </ul>
-                    <form class="d-flex" role="search">
 
+
+                    <div>
                         <button class="btn btn-primary rounded-pill px-4 fs-5 fw-bold mx-auto" >Login</button>
-                    </form>
+                    </div>
+
                 </div>
             </div>
         </nav>
