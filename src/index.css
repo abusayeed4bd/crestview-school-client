@@ -25,7 +25,9 @@ i,
 ul,
 li,
 table,
-button {
+button,
+label,
+input {
   font-family: 'Nunito', sans-serif;
 }
 

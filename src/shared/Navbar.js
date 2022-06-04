@@ -22,7 +22,7 @@ const Navbar = () => {
 
 
                     <div>
-                        <button class="btn btn-primary rounded-pill px-4 fs-5 fw-bold mx-auto" >Login</button>
+                        <Link to="/login" class="btn btn-primary rounded-pill px-4 fs-5 fw-bold mx-auto" >Login</Link>
                     </div>
 
                 </div>
