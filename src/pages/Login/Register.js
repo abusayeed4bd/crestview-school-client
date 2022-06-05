@@ -1,7 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import auth from './../../firebase.init';
 
 const Register = () => {
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+        const name = event.target.name.value;
+
+
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({ displayName: name })
+
+        event.target.reset();
+    }
     return (
         <div>
             <div class="card border-primary mb-3 w-sm-75 w-50  mx-auto my-5" >
@@ -9,20 +32,20 @@ const Register = () => {
                     <h2 className="fw-bold text-white">Create Account</h2>
                 </div>
                 <div class="card-body text-primary">
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div class="mb-3">
                             <label className='fs-5' for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" />
+                            <input type="text" name='name' class="form-control" id="name" aria-describedby="emailHelp" />
 
                         </div>
                         <div class="mb-3">
                             <label className='fs-5' for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                            <input name='email' type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
 
                         </div>
                         <div class="mb-3">
                             <label className='fs-5' for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" />
+                            <input name='password' type="password" class="form-control" id="exampleInputPassword1" />
                         </div>
 
                         <input type="submit" class="btn btn-primary d-block w-100 fs-4" value="Register" />
