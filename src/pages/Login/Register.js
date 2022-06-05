@@ -1,29 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const Register = () => {
     return (
         <div>
             <div class="card border-primary mb-3 w-sm-75 w-50  mx-auto my-5" >
                 <div class="card-header bg-primary">
-                    <h2 className="fw-bold text-white">Login</h2>
+                    <h2 className="fw-bold text-white">Create Account</h2>
                 </div>
                 <div class="card-body text-primary">
                     <form>
                         <div class="mb-3">
-                            <label className='fs-4' for="exampleInputEmail1" class="form-label">Email address</label>
+                            <label className='fs-5' for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" />
+
+                        </div>
+                        <div class="mb-3">
+                            <label className='fs-5' for="exampleInputEmail1" class="form-label">Email address</label>
                             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
 
                         </div>
                         <div class="mb-3">
-                            <label className='fs-4' for="exampleInputPassword1" class="form-label">Password</label>
+                            <label className='fs-5' for="exampleInputPassword1" class="form-label">Password</label>
                             <input type="password" class="form-control" id="exampleInputPassword1" />
                         </div>
 
-                        <input type="submit" class="btn btn-primary d-block w-100 fs-4" value='Login' />
+                        <input type="submit" class="btn btn-primary d-block w-100 fs-4" value="Register" />
                     </form>
 
-                    <p className='fs-5 my-2 text-black'>New to this website? <Link className='text-decoratin-none  text-primary' to="/register">Register here</Link></p>
+                    <p className='fs-5 my-2 text-black'>Already have an account ? <Link className='text-decoratin-none  text-primary' to="/register">Login here</Link></p>
 
                     <button className='btn btn-outline-primary w-100'>
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -37,4 +42,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;
