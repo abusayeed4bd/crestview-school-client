@@ -1,7 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import auth from './../../firebase.init';
 
 const Login = () => {
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+    const navigate = useNavigate();
+    if (user) {
+        navigate('/');
+    }
+    const handleLogin = event => {
+        event.preventDefault();
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+        signInWithEmailAndPassword(email, password);
+
+        event.target.reset();
+    }
     return (
         <div>
             <div class="card border-primary mb-3 w-sm-75 w-50  mx-auto my-5" >
@@ -9,18 +29,26 @@ const Login = () => {
                     <h2 className="fw-bold text-white">Login</h2>
                 </div>
                 <div class="card-body text-primary">
-                    <form>
+                    <form onSubmit={handleLogin}>
                         <div class="mb-3">
                             <label className='fs-4' for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                            <input name='email' type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
 
                         </div>
                         <div class="mb-3">
                             <label className='fs-4' for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" />
+                            <input name='password' type="password" class="form-control" id="exampleInputPassword1" />
                         </div>
 
-                        <input type="submit" class="btn btn-primary d-block w-100 fs-4" value='Login' />
+                        {
+                            loading ?
+                                <button class="btn btn-primary d-block w-100 fs-4 disabled" >
+                                    <div class="spinner-border text-light" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </button> :
+                                <input type="submit" class="btn btn-primary d-block w-100 fs-4" value='Login' />
+                        }
                     </form>
 
                     <p className='fs-5 my-2 text-black'>New to this website? <Link className='text-decoratin-none  text-primary' to="/register">Register here</Link></p>

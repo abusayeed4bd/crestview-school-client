@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from './../../firebase.init';
+import { toast } from 'react-toastify';
 
 const Register = () => {
     const [
@@ -24,6 +25,7 @@ const Register = () => {
         await updateProfile({ displayName: name })
 
         event.target.reset();
+        toast.success('account created successfully Please check your email to verify your account');
     }
     return (
         <div>

@@ -8,6 +8,8 @@ import 'aos/dist/aos.css';
 import Footer from './shared/Footer';
 import Login from './pages/Login/Login';
 import Register from './pages/Login/Register';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   AOS.init();
@@ -21,6 +23,7 @@ function App() {
         <Route path="*" element={<Home></Home>}></Route>
       </Routes>
       <Footer></Footer>
+      <ToastContainer />
 
     </div>
   );
