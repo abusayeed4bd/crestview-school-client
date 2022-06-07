@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from './../../firebase.init';
 
@@ -10,6 +10,7 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const navigate = useNavigate();
     if (user) {
         navigate('/');
@@ -21,6 +22,9 @@ const Login = () => {
         signInWithEmailAndPassword(email, password);
 
         event.target.reset();
+    }
+    const handleGoogleLogin = () => {
+        signInWithGoogle()
     }
     return (
         <div>
@@ -53,7 +57,7 @@ const Login = () => {
 
                     <p className='fs-5 my-2 text-black'>New to this website? <Link className='text-decoratin-none  text-primary' to="/register">Register here</Link></p>
 
-                    <button className='btn btn-outline-primary w-100'>
+                    <button onClick={handleGoogleLogin} className='btn btn-outline-primary w-100'>
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                             width="30" height="30"
                             viewBox="0 0 48 48"

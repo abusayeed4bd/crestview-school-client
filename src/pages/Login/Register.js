@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from './../../firebase.init';
 import { toast } from 'react-toastify';
 
@@ -11,6 +11,7 @@ const Register = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
 
@@ -27,6 +28,9 @@ const Register = () => {
         event.target.reset();
         toast.success('account created successfully Please check your email to verify your account');
     }
+    const handleGoogleLogin = () => {
+        signInWithGoogle()
+    }
     return (
         <div>
             <div class="card border-primary mb-3 w-sm-75 w-50  mx-auto my-5" >
@@ -37,25 +41,28 @@ const Register = () => {
                     <form onSubmit={handleSubmit}>
                         <div class="mb-3">
                             <label className='fs-5' for="name" class="form-label">Name</label>
-                            <input type="text" name='name' class="form-control" id="name" aria-describedby="emailHelp" />
+                            <input type="text" name='name' class="form-control" id="name" aria-describedby="emailHelp" required />
 
                         </div>
                         <div class="mb-3">
                             <label className='fs-5' for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input name='email' type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                            <input name='email' type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
 
                         </div>
                         <div class="mb-3">
                             <label className='fs-5' for="exampleInputPassword1" class="form-label">Password</label>
-                            <input name='password' type="password" class="form-control" id="exampleInputPassword1" />
+                            <input name='password' type="password" class="form-control" id="exampleInputPassword1" required />
                         </div>
 
                         <input type="submit" class="btn btn-primary d-block w-100 fs-4" value="Register" />
                     </form>
+                    {
+                        (error || googleError) && <p className="text-danger my-2">{error.message}</p>
+                    }
 
                     <p className='fs-5 my-2 text-black'>Already have an account ? <Link className='text-decoratin-none  text-primary' to="/register">Login here</Link></p>
 
-                    <button className='btn btn-outline-primary w-100'>
+                    <button onClick={handleGoogleLogin} className='btn btn-outline-primary w-100'>
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                             width="30" height="30"
                             viewBox="0 0 48 48"
