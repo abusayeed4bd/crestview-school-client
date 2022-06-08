@@ -5,10 +5,10 @@ import banner2 from '../../Image/banner2.png'
 import banner3 from '../../Image/banner3.png'
 const Banner = () => {
     return (
-        <Carousel>
-            <Carousel.Item>
+        <Carousel >
+            <Carousel.Item >
                 <img
-                    className="d-block w-100"
+                    className="d-block w-100 "
                     src={banner1}
                     alt="First slide"
                 />

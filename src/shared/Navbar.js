@@ -14,11 +14,11 @@ const Navbar = () => {
     return (
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top">
             <div class="container">
-                <Link to="/"><img src={logo} alt="" /></Link>
+                <Link to="/"><img width="290px" src={logo} alt="" /></Link>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li><Link className='text-decoration-none fw-bold  fs-5 mx-4 ' to="">Home</Link></li>
                         <li><Link className='text-decoration-none fw-bold  fs-5 mx-4 ' to="">About</Link></li>
