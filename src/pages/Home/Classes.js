@@ -4,7 +4,7 @@ import Loading from '../../shared/Loading';
 import SingleClass from './SingleClass';
 
 const Classes = () => {
-    const { data: classes, isLoading } = useQuery('classes', () => fetch('http://localhost:5000/classes').then(res => res.json()))
+    const { data: classes, isLoading } = useQuery('classes', () => fetch('https://crestview-school.herokuapp.com/classes').then(res => res.json()))
     if (isLoading) {
         return <Loading></Loading>
     }

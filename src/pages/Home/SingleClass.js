@@ -46,7 +46,7 @@ const SingleClass = ({ singleClass }) => {
                                 <strong>Tuition Fees:</strong>
                             </div>
                             <div className="col-6">
-                                <p className="m-0">{fee} /month</p>
+                                <p className="m-0">${fee} /month</p>
                             </div>
                         </div>
                     </div>

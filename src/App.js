@@ -10,6 +10,7 @@ import Login from './pages/Login/Login';
 import Register from './pages/Login/Register';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ClassesPage from './pages/Classes/ClassesPage';
 
 function App() {
   AOS.init();
@@ -18,6 +19,7 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/classes/" element={<ClassesPage></ClassesPage>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
         <Route path="*" element={<Home></Home>}></Route>
